@@ -77,8 +77,11 @@ resource "aws_lambda_function" "main" {
   filename         = data.archive_file.lambda_source.output_path
   source_code_hash = filebase64sha256(data.archive_file.lambda_source.output_path)
 
-  environment {
-    variables = var.env_vars
+  dynamic "environment" {
+    for_each = length(var.env_vars) > 0 ? ["foo"] : []
+    content {
+      variables = var.env_vars
+    }
   }
 
   tags = var.project.tags
