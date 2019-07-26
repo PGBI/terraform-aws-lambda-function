@@ -42,7 +42,7 @@ module "role_policy" {
   statements = [{
     actions   = ["logs:DescribeLogGroups"]
     resources = ["arn:aws:logs:*:${var.project.account_id}:*"]
-    effec     = "Allow"
+    effect    = "Allow"
     }, {
     actions = [
       "logs:CreateLogStream",
