@@ -73,6 +73,7 @@ resource "aws_lambda_function" "main" {
   role             = module.role.arn
   runtime          = var.runtime
   memory_size      = var.memory_size
+  layers           = var.layers_arns
   timeout          = var.timeout
   filename         = data.archive_file.lambda_source.output_path
   source_code_hash = filebase64sha256(data.archive_file.lambda_source.output_path)
